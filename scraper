@@ -1,0 +1,11 @@
+from selenium import webdriver as wd
+from bs4 import BeautifulSoup as bs
+import pandas as pd
+
+driver = wd.Chrome('/Users/ionglobe/Downloads/chromium-browser/chromedriver')
+
+name, jobname, company, year, description = []
+
+## return
+# first job
+# quantity of 'marketing' word usage
