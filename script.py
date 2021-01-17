@@ -54,14 +54,20 @@ for li in soup.findAll('li', attrs={'class':'pv-entity__position-group-pager'}):
     c = li.find('p', attrs={'class':'pv-entity__secondary-title'})
     y = li.find('h4', attrs={'class':'pv-entity__date-range'})
     sJTitle.append(jt.text)
-    sCompany.append(c.text)
-    # sYear.append(y.text)
-    # r = y.text.split('\n', '')
-    print('\n' in y.text)
+    sCompany.append(c.text.split('\n')[1])
+    sYear.append(y.text.split('\n')[2])
+
+
+## How many times the 'WORD' being found in the profile
+def findTheWord(str):
+    return
+
+def countTheWord(arr):
+    return
 
 
 ## Save to file
-df = pd.DataFrame({'Job Title': sJTitle, 'Company': sCompany})
+df = pd.DataFrame({'Job Title': sJTitle, 'Company': sCompany, 'Year': sYear})
 
 filename = re.sub(r'(\w)([A-Z])', r'\1 \2', sName.replace(' ', '')).lower().replace(' ', '_').replace('\n', '') + '.csv'
 
