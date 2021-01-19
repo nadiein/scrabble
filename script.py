@@ -13,10 +13,12 @@ BASE_URL = Utils().getBaseUrl()
 # cr_usr = input('enter your login => ')
 # cr_pwd = input('enter your pass => ')
 # acc = input('enter profile to search => ')
+# substr = input('enter substring to find on the page')
 
 cr_usr = Utils().getCreds()['usr']
 cr_pwd = Utils().getCreds()['pwd']
 acc = Utils().getAcc()
+substr = 'marketing'
 
 driver = wd.Chrome('/Users/ionglobe/Downloads/chromium-browser/chromedriver')
 
@@ -59,11 +61,8 @@ for li in soup.findAll('li', attrs={'class':'pv-entity__position-group-pager'}):
 
 
 ## How many times the 'WORD' being found in the profile
-def findTheWord(str):
-    return
-
-def countTheWord(arr):
-    return
+def findAndCountTheWord(str, substr):
+    return str.count(substr)
 
 
 ## Save to file
@@ -73,7 +72,4 @@ filename = re.sub(r'(\w)([A-Z])', r'\1 \2', sName.replace(' ', '')).lower().repl
 
 df.to_csv(filename, index = False, encoding = 'utf-8')
 
-## return
-# Name, Job title, Company, Year at company, description
-# first job
-# quantity of 'marketing' word usage
+w = findAndCountTheWord(soup.get_text(), substr)
